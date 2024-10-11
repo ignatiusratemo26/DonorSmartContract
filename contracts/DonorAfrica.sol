@@ -29,6 +29,7 @@ contract DonorAfrica is IDonorRegistration, IFundDistribution, ISchoolVerificati
         bool isVerified;
         address school;
         uint256 fundsClaimed;
+        uint256 lastClaimed;
     }
 
     mapping(address => Donor) public donors;
@@ -71,11 +72,16 @@ contract DonorAfrica is IDonorRegistration, IFundDistribution, ISchoolVerificati
     }
 
     function distributeFunds() external override {
-        require(block.timestamp >= lastDistribution + 30 days, "Distribution not due");
+        // require(block.timestamp >= lastDistribution + 30 days, "Distribution not due");
+        require(schoolAddresses.length > 0, "No schools available for distribution");
         uint256 numSchools = schoolAddresses.length;
         uint256 amountPerSchool = totalDonations / numSchools;
         for (uint256 i = 0; i < numSchools; i++) {
             address schoolAddress = schoolAddresses[i];
+            require(schools[schoolAddress].isVerified, "School not verified");
+
+            // transfer funds to each verified school
+            require(usdcToken.transfer(schoolAddress, amountPerSchool),"USDC Transfer failed");
             schools[schoolAddress].totalFundsReceived += amountPerSchool;
         }
         lastDistribution = block.timestamp;
@@ -87,8 +93,11 @@ contract DonorAfrica is IDonorRegistration, IFundDistribution, ISchoolVerificati
         require(students[msg.sender].isVerified, "Student not verified");
         address school = students[msg.sender].school;
         require(schools[school].isVerified, "School not verified");
+        require(students[msg.sender].lastClaimed < lastDistribution, "Funds already claimed for this distribution period");
+
         uint256 amount = 100; // Assume a fixed amount for simplicity
         students[msg.sender].fundsClaimed += amount;
+        students[msg.sender].lastClaimed = block.timestamp; // Update the last claimed timestamp
         emit FundsWithdrawn(msg.sender, amount);
     }
 
@@ -136,14 +145,14 @@ contract DonorAfrica is IDonorRegistration, IFundDistribution, ISchoolVerificati
     function registerStudent(address _school) external {
         require(schools[_school].isVerified, "School not verified");
         require(!students[msg.sender].isVerified, "Student already verified");
-        students[msg.sender] = Student({isVerified: true, school: _school, fundsClaimed: 0});
+        students[msg.sender] = Student({isVerified: true, school: _school, fundsClaimed: 0, lastClaimed: 0});
         emit StudentVerified(msg.sender);
     }
 
     function verifyStudent(address _student, address _school) external override {
         require(schools[_school].isVerified, "School not verified");
         require(!students[_student].isVerified, "Student already verified");
-        students[_student] = Student({isVerified: true, school: _school, fundsClaimed: 0});
+        students[_student] = Student({isVerified: true, school: _school, fundsClaimed: 0, lastClaimed: 0});
         emit StudentVerified(_student);
     }
 

@@ -1,0 +1,511 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_usdcToken",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "donor",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "DonationMade",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "donor",
+						"type": "address"
+					}
+				],
+				"name": "DonorRegistered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "totalAmount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "numSchools",
+						"type": "uint256"
+					}
+				],
+				"name": "FundsDistributed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "student",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "FundsWithdrawn",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "school",
+						"type": "address"
+					}
+				],
+				"name": "SchoolVerified",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "student",
+						"type": "address"
+					}
+				],
+				"name": "StudentVerified",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "claimFunds",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "distributeFunds",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "donate",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "donors",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "isRegistered",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalDonated",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "getMonth",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_donor",
+						"type": "address"
+					}
+				],
+				"name": "isDonorRegistered",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_school",
+						"type": "address"
+					}
+				],
+				"name": "isSchoolVerified",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_student",
+						"type": "address"
+					}
+				],
+				"name": "isStudentVerified",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lastDistribution",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "registerDonor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "registerSchool",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_school",
+						"type": "address"
+					}
+				],
+				"name": "registerStudent",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "schoolAddresses",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "schools",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "isVerified",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalFundsReceived",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "students",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "isVerified",
+						"type": "bool"
+					},
+					{
+						"internalType": "address",
+						"name": "school",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "fundsClaimed",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "lastClaimed",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalDonations",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalSchools",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "usdcToken",
+				"outputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_school",
+						"type": "address"
+					}
+				],
+				"name": "verifySchool",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_student",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_school",
+						"type": "address"
+					}
+				],
+				"name": "verifyStudent",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"getMonth(uint256)": {
+					"notice": "The interface takes a parameter, this one does not. So its replaced with the one below  function getMonth() external view returns (uint256) { return (block.timestamp / 30 days) % 12 + 1; }"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/DonorAfrica.sol": "DonorAfrica"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xc6a8ff0ea489379b61faa647490411b80102578440ab9d84e9a957cc12164e70",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0ea104e577e63faea3b69c415637e99e755dcbf64c5833d7140c35a714d6d90c",
+				"dweb:/ipfs/Qmau6x4Ns9XdyynRCNNp3RhLqijJjFm7z5fyZazfYFGYdq"
+			]
+		},
+		"contracts/DonorAfrica.sol": {
+			"keccak256": "0x3694a4f2d6f58beea8d8f418d43b6b9f4f986cfb790b696355c6b60ec2ef97f1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e02f5a4c3ee9cc990206de6792242b21fdd2ba8cfe69d3d9f907673b05d54262",
+				"dweb:/ipfs/Qme31Nv97nbXtaAJr7bnoUzMH4Tg7D9EiC9QEiNCdxp5hh"
+			]
+		},
+		"contracts/IDonorRegistration.sol": {
+			"keccak256": "0x13224f4c75f685410a78e9c7c4bc06543e856eb3c91f9cadbd7e831b807e72dc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2493cea4c052c04e1458d4da4028d8d239d8800909cabbbabec63b8f0394a12e",
+				"dweb:/ipfs/QmUEH8NAcNawTeHzNUDvpusqmFNzCo8ykjCKtt6gfCT3FC"
+			]
+		},
+		"contracts/IFundDistribution.sol": {
+			"keccak256": "0x0613878a4270bd0f68a775159fd9337eb6a94154e714872538602fbe7dd86d8c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6e93c4874d855091806fea2d24aefae3323dd4f5c9fd9f08cce485abb14548db",
+				"dweb:/ipfs/QmYDRMpCqW2NK2PDP3Q6FKFtxMtVcYNymTeyi48yjnFqqJ"
+			]
+		},
+		"contracts/ISchoolVerification.sol": {
+			"keccak256": "0x0667186dfa680d333c4f843d7933a13821f0b3b39aa932d6c0e80f554a83a931",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5049ec036a03a7098a888266d4e6bccf0c34e45cf08653a1f704d58b91b118ae",
+				"dweb:/ipfs/QmPHkhXLy6qzkZ6aytBYQDV9ZPGE2Fcr1DPFvzP9BwoeNP"
+			]
+		},
+		"contracts/IStudentVerification.sol": {
+			"keccak256": "0x48076bd241199a4278b822100e42476d93833cde2eda9f7d64433727a2c68e01",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c4d10e9168d2a131ee1aa749e02538c33cf2e5cd7dbbdfdcdc765487a019380d",
+				"dweb:/ipfs/QmZ4HTq9AZwtoWh1gyVxyZwY7GCGNchzM8QX2ABc7dQWpo"
+			]
+		}
+	},
+	"version": 1
+}
